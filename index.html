@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>get it done!</title>
+  <title>do it</title>
   <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
   <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -59,17 +59,25 @@
   </div>
 
   <script type="text/babel">
-    var destination = document.querySelector("#container");
+    const destination = document.querySelector("#container");
 
-    var TodoItems = React.createClass({
+    const loadTodos = function(){
+      const url = 'https://jsonplaceholder.typicode.com/posts/1'
+      const xhr = new XMLHttpRequest();
+       xhr.open("GET", url);
+    }
+
+    console.log(loadTodos())
+
+    const TodoItems = React.createClass({
       render: function() {
-        var todoEntries = this.props.entries;
+        const todoEntries = this.props.entries;
 
         function createTasks(item) {
           return <li key={item.key}>{item.text}</li>
         }
 
-      var listItems = todoEntries.map(createTasks);
+      const listItems = todoEntries.map(createTasks);
 
       return (
         <ul className="theList">
@@ -79,7 +87,7 @@
       }
      });
 
-    var TodoList = React.createClass({
+    const TodoList = React.createClass({
       getInitialState: function() {
         return {
           items: []
@@ -87,7 +95,7 @@
       },
 
       addItem: function(e) {
-        var itemArray = this.state.items;
+        const itemArray = this.state.items;
         itemArray.push(
           {
             text: this._inputElement.value,
